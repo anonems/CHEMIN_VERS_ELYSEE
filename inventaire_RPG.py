@@ -1,12 +1,19 @@
 '''
-Auteur : 
-Déscription :
-
+Nom du projet : " Le chemin vers l'elysée "
+Membres du groupe de 4 :
+                        HAKIRI Emir
+                        LIMACO DIEGO
+                        MUGUET Benoit
+                        ROY Accene
+                        YE FERNANDES Guy
+Lieu : HETIC
+Encadrement : JANIN Loïc 
+Language de programation : Python
+Date de rendu limite : 5 janvier 2022
 '''
+
 #   importation des parties du jeu 
 
-from menu_RPG import *
-from combat_RPG import *
 
 #	la function fait le choix principal dans linventaire:
 def inventaire_choix_principal():
@@ -31,3 +38,9 @@ def inventaire_choix_secundaire():
 		print()
 	else:
 		print()
+
+def inventaire_ajout_objet():
+	return
+
+def inventaire_ajout_electeurs():
+	return
