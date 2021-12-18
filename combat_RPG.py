@@ -1,3 +1,16 @@
+'''
+Nom du projet : " Le chemin vers l'elysée "
+Membres du groupe de 4 :
+                        HAKIRI Emir
+                        LIMACO DIEGO
+                        MUGUET Benoit
+                        ROY Accene
+                        YE FERNANDES Guy
+Lieu : HETIC
+Encadrement : JANIN Loïc 
+Language de programation : Python
+Date de rendu limite : 5 janvier 2022
+'''
 from random import randint
 class Personnage :
     def __init__(self,nom,points_vie,arme,xp,) -> None:
@@ -157,9 +170,9 @@ def combat(nb_rencontre) :
                 print("Il vous reste",player.points_vie,"points de vie")
                 print("L'ennemi à",adversaire.points_vie,"points de vie")
 
-
+'''
 combat(1)
 combat(2)
 combat(3)
 combat(4)
-combat(5)
+combat(5)'''
