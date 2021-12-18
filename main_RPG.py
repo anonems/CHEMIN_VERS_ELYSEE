@@ -5,17 +5,15 @@ Membres du groupe de 4 :
                         LIMACO DIEGO
                         MUGUET Benoit
                         ROY Accene
-                        YE FERNANDES Guy
+                        FERNANDES Guy
 Lieu : HETIC
 Encadrement : JANIN Loïc 
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
 '''
 #   importation des differentes parties du jeu
-#from menu_RPG import menu
-#from inventaire_RPG import *
-#from combat_RPG import *
 from deplacement_RPG import deplacement_un,deplacement_deux,deplacement_trois,deplacement_quatre,deplacement_cinq
+from menu_RPG import premier_menu
 
 #   Fonction de test oui ou non.
 def oui_non():
@@ -34,7 +32,7 @@ def oui_non():
 
 #   fonction principale du jeu.
 def main_rpg():
-
+  first=premier_menu()
   sauvegarde=""  #    permet le retour au niveau sauvgarder
     
   print("___________________________________________________________________________________________")
@@ -58,40 +56,59 @@ def main_rpg():
   print("\n")
   print("___________________________________________________________________________________________")
 
-  print("**************************----------- Début du jeu ------------*************************")
-  #   recuperation du nom du joueur.
-  print("votre nom ?")
-  nom=input()
+  
+  #le cas où le joueur demande de commencer un nouvelle partie.
+  if first == 1: 
+    print("**************************----------- Début du jeu ------------*************************")
+    #   recuperation du nom du joueur.
+    print("votre nom ?")
+    nom=input()
 
-  #   presentation du jeu.
-  print("Cher(e) candidat(e) à l'éléction présidentielle 2022;\n"
-      "Dans ce jeu vous devrez tout faire pour arriver à l'élysée,\n"
-      "plusieurs étapes avant d'arriver à l'élysée et de jouer le combat finale...\n"
-      "Vous trouverez sur votre chemin des obstacles, des combats, des élécteurs...\n"
-      "Après chaque combat vous aurez la possibilité d'augmenter vos points de vies selon le stock de potions que vous disposez.\n"
-      "Vous pouvez arreter le jeu à tout moment, mais si vous n'avez plus de vie : le jeu est terminé!\n"
-      "Le but final est de battre 'Alexandre', le gardien de l'elysée,\n"
-      "ce qui vous permetra de passer au decomptage de electeurs que vous aurez acheter ou gagné,\n"
-      "Attention ! si vous avez moins de 5 élécteurs vous perdez le jeu.\n"
-      "\n")
+    #   presentation du jeu.
+    print("Cher(e) candidat(e) à l'éléction présidentielle 2022;\n"
+        "Dans ce jeu vous devrez tout faire pour être president.,\n"
+        "plusieurs étapes avant d'arriver à l'élysée et de jouer le combat finale...\n"
+        "Vous trouverez sur votre chemin des obstacles, des combats, des élécteurs...\n"
+        "Après chaque combat vous aurez la possibilité d'augmenter vos points de vies selon le stock de potions que vous disposez.\n"
+        "Vous pouvez arreter le jeu à tout moment, mais si vous n'avez plus de vie : le jeu est terminé!\n"
+        "Le but final est de battre 'Alexandre', le gardien de l'elysée,\n"
+        "ce qui vous permetra de passer au decomptage de electeurs que vous aurez pu ramasser sur votre chemin,\n"
+        "Attention ! si vous avez moins de 10 élécteurs vous perdez le jeu.\n"
+        "\n")
 
-  #   première interaction avec le joueur, qui n'a aucun effet sur le joueur, met qui permet de ne pas fatigué le joueur avec trop de lecture.
-  print("Vous êtes prêt ?")
-  if oui_non() :
-      print("C'est parti...")
-  else :
-      print("Tant-pis, c'est parti quand même...")
-  ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
-  if deplacement_un() or sauvegarde == "etape_un": #   première etape du jeu : combat de rue; personnage clef : Hidalgo
+    #   première interaction avec le joueur, qui n'a aucun effet sur le joueur, met qui permet de ne pas fatigué le joueur avec trop de lecture.
+    print("Vous êtes prêt ?")
+    if oui_non() :
+        print("C'est parti...")
+    else :
+        print("Tant-pis, c'est parti quand même...")
+
+    ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
+    if deplacement_un() : #   première etape du jeu : combat de rue; personnage clef : Hidalgo
+        if deplacement_deux() : #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
+            if deplacement_trois() :  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
+                if deplacement_quatre() : #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
+                  if deplacement_cinq() : #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+                    #   une fois toutes les étapes validées, fin du jeu.
+                    print("BRAVO ! VOUS AVEZ GAGNE")
+                    print("**************************----------- FIN DU JEU ------------*************************")
+                    return
+
+  #   le cas où le joueur souhaite continuer depuis une sauvegarde précédente.
+  elif first == 2:
+    ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
+    if deplacement_un() or sauvegarde == "etape_un": #   première etape du jeu : combat de rue; personnage clef : Hidalgo
       if deplacement_deux() or sauvegarde == "etape_deux": #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
-          if deplacement_trois() or sauvegarde == "etape_trois":  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
-              if deplacement_quatre() or sauvegarde == "etape_quatre": #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
-                if deplacement_cinq() or sauvegarde == "etape_cinq": #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
-                  #   une fois toutes les étapes validées, fin du jeu.
-                  print("BRAVO ! VOUS AVEZ GAGNE")
-                  print("**************************----------- FIN DU JEU ------------*************************")
-                  return
-
+        if deplacement_trois() or sauvegarde == "etape_trois":  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
+          if deplacement_quatre() or sauvegarde == "etape_quatre": #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
+            if deplacement_cinq() or sauvegarde == "etape_cinq": #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+              #   une fois toutes les étapes validées, fin du jeu.
+              print("BRAVO ! VOUS AVEZ GAGNE")
+              print("**************************----------- FIN DU JEU ------------*************************")
+              return
+  elif first == 3:
+    print("au revoir.")
+    return
 
 ##################################-------Lancement du jeu-------######################################
 main_rpg()
