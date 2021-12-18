@@ -1,13 +1,21 @@
 '''
-Auteur : Hakiri Emir
-Déscription :
-
+Nom du projet : " Le chemin vers l'elysée "
+Membres du groupe de 4 :
+                        HAKIRI Emir
+                        LIMACO DIEGO
+                        MUGUET Benoit
+                        ROY Accene
+                        YE FERNANDES Guy
+Lieu : HETIC
+Encadrement : JANIN Loïc 
+Language de programation : Python
+Date de rendu limite : 5 janvier 2022
 '''
 #   importation des parties du jeu
 from random import randint
 from inventaire_RPG import inventaire_ajout_objet,inventaire_ajout_electeurs
 from combat_RPG import combat
-from menu_RPG import joystick,menu_principale,sauvegarde
+from menu_RPG import menu_principale,sauvegarde
 from random import randint
 from main_RPG import oui_non
 
