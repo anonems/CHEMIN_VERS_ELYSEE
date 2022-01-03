@@ -11,13 +11,14 @@ Encadrement : JANIN Loïc
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
 '''
+
 #   importation des parties du jeu
 from random import randint
 from inventaire_RPG import inventaire_ajout_objet,inventaire_ajout_electeurs
 from combat_RPG import combat
-from menu_RPG import menu_principale,sauvegarde
+from menu_RPG import sauvegarde,joystick,action_menu_principale
 from random import randint
-from main_RPG import oui_non
+from fonctions import oui_non,un_deux
 
 #   permet de definir les differents objet à recupérer l'hors du deplacement.
 class Objets:
@@ -26,26 +27,13 @@ class Objets:
     self.tipe=tipe
     self.effet=effet
 
-#   permet de faire un choix entre les chiffres 1 et 2.
-def un_deux():
-  urep = input()
-  if urep == 1 :
-    return True
-  elif urep == 2 :
-    return False
-  while  urep != 1 or urep!=2 :
-    print('erreur, choisissez 1 ou 2')
-    urep = input()
-    if urep == 1 :
-      return True
-    elif urep == 2:
-      return False
+
 
 #   permet de recuperer la commande executer dans le menu, puis l'appliquer au deplacement du joueur.
-def deplacement_libre():
+def deplacement_libre(sauver):
   print("La main est à vous, vous pouvez vous déplacer :")
   loc_map=[0,0]   #  liste composé de x : deplacement horizontal et y : deplacement verticale.
-  choix=menu_principale()
+  choix=joystick()
 
   #   evolution de la position de du joueur selon la commande joystick dans le menu.
   if choix==1:
@@ -58,22 +46,16 @@ def deplacement_libre():
     print("Vous vous diriger à gauche...")
     loc_map[0]=(loc_map[0]-5)
   elif choix==4:
-    print("Vous vous faites demi-tour...")
+    print("Vous faites demi-tour...")
     loc_map[1]=(loc_map[1]-5)
-
   #   le joueur souhaite quitter le jeu, on verifie se choix, et on propose la sauvegarde du  niveau du jeu.
   elif choix==5:
-    print("vous etes sûr ?")
-    if oui_non():
-      print("voulez vous sauvegarder le jeu ?")
-      if oui_non():
-        sauvegarde()
-      else :
-        return "fin_jeu"
+    action_menu_principale(sauver)
+  return choix
 
 #   cette fonction permet l'apparition d'objet ai hazard sur le chemin du joueur
-def objet():
-  res_deplacement=deplacement_libre()
+def objet(sauver):
+  res_deplacement=deplacement_libre(sauver)
   #   definition des objet que le joueur peut trouvé et recupérer sur son chemin.
   marteau=Objets("marteau", "arme",10)
   pv=Objets("Potion de vie", "potion", 5)
@@ -88,20 +70,22 @@ def objet():
     res=l_objets[randint(0,5)]
     print("vous avez trouver l'objet suivant :", res.nom)
     print("voulez-vous le prendre ?")
-    if oui_non:
-      inventaire_ajout_objet(res) #   ajout de l'objet selectionné dans l'inventaire du joueur
-  return res
+    if oui_non():
+      inventaire_ajout_objet(res_deplacement) #   ajout de l'objet selectionné dans l'inventaire du joueur
+    else:
+      print("ok")
+  return res_deplacement
 
 
 #   première étape du jeu
 def deplacement_un():
   niveau=1
   #   premier deplacement du joueur.
-  objet()
+  objet(niveau)
   #   contexte générale
   print("Vous êtes rue de Bercy, vous vous diriger vers l'Arena pour assiter au théatre de 'The Humour'")
   #   deuxième déplacement du joueur.
-  objet()
+  objet(niveau)
   #   mise en situation.
   print("Attention ! une voiture roule à toute vitesse vers vous, le chauffeur vous évite et fini sa course dans une vitrine \n"
         "le chauffeur sort sain et sauf, mais qui est-ce ?\n"
@@ -123,15 +107,15 @@ def deplacement_deux():
   niveau=2
   print("BRAVO ! vous passez au niveau 2.")
   #   deplacements libre
-  objet()
-  objet()
+  objet(niveau)
+  objet(niveau)
   #   contexte
   print("Vous arrivez à l'Arena, pour assiter un sketch selon vos informations, mais ... \n"
         "vous trouverez sur scene un personnage qui vous et famillier, les vannes ne vous plaisent pas ils sont selon vous déplacées.\n"
         "les gens autour de vous ne vous reconaissent pas ils commencent à vous bousculer.\n")
   #   deplacement libre
-  objet()
-  objet()
+  objet(niveau)
+  objet(niveau)
   #   mise en situation
   print("La plate-forme est devant vous, vous appercevez un de vos concurrent au micro, 'The humour'...")
   print("c'est à vous, faire un choix :")
@@ -168,9 +152,9 @@ def deplacement_trois():
     print("BRAVO ! vous passez au niveau 3.")
     niveau = 3
     #   deplacements libre
-    objet()
-    objet()
-    objet()
+    objet(niveau)
+    objet(niveau)
+    objet(niveau)
     #   contexte
     print("Vous êtes arrivez au plateau tv de l'Arena, vous etes confronter au melonchaud...  \n"
           "un nombre de clache est tiré au hazard, vous devrez vous clacher l'un après l'autre,\n"
@@ -182,19 +166,20 @@ def deplacement_trois():
       
 #   quatrieme etape du jeu
 def deplacement_quatre():
+  niveau = 4
   print("BRAVO ! vous passez au niveau 4.")
   #   deplacement libre
-  objet()
-  objet()
+  objet(niveau)
+  objet(niveau)
   print("Vous etes sorti de L'arena.")
   #   deplacement libre
-  objet()
-  objet()
+  objet(niveau)
+  objet(niveau)
   #   deplacement libre
   #   contexte
   print("vous rentrez au 'Bercy café'")
   #   deplacement libre
-  objet()
+  objet(niveau)
   print("serveur : qu'est-ce que je vous sert ?")
   print("vous :",input())
   print("serveur : ca marche installez-vous.")
@@ -218,7 +203,7 @@ def deplacement_quatre():
         combat(4)
       else :
         print("Mme Pas-La-Peine : revenez à votre place s'il vous plait")
-        objet()
+        objet(niveau)
         deplacement_cinq()
     else:
       print(input())
@@ -227,16 +212,17 @@ def deplacement_quatre():
       combat(4)
   else :
     print("serveur : excusez-moi messieur, je vous ramene un second café toute suite.")
-    objet()
+    objet(niveau)
     #   on passe au niveau suivant sans combat
     deplacement_cinq()
 
 #   cinquième etape du jeu
 def deplacement_cinq():
+  niveau = 5
   print("BRAVO ! vous passez au niveau final.")
   #   deplacement libre
-  objet()
-  objet()
+  objet(niveau)
+  objet(niveau)
   #   mise en situation
   print("c'est le moment d'aller à l'elysée")
   #   debut question reponse
@@ -266,8 +252,8 @@ def deplacement_cinq():
     else :
           print("très bien on arrive dans 15 minutes.")
   else :
-    objet()
-    objet()
+    objet(niveau)
+    objet(niveau)
     print("faire un choix :")
     print("1 - prendre le metro.")
     print("2 - prendre le RER.")
@@ -281,8 +267,8 @@ def deplacement_cinq():
         print("très bien vous arrivez dans 20 minutes.")
     else :
       print("très bien vous arrivez dans 30 minutes.")
-    objet()
-    objet()
+    objet(niveau)
+    objet(niveau)
     print("vous êtes devant la porte principale de l'élysée, il y a un une personne.")
     print("Alexandre...")
     print("faire un choix :")
@@ -309,15 +295,5 @@ def deplacement_cinq():
     else :
       #   cinquième combat
       combat(5)
-
-
-
-
-
-
-
-
-
-
 
   return
