@@ -11,16 +11,89 @@ Encadrement : JANIN Loïc
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
 '''
+from fonctions import un_quatre,oui_non,un_cinq
+from inventaire_RPG import inventaire
 
-def menu():
+def premier_menu():
   print('\033[1m' + "==========LE CHEMIN VERS L'ELYSEE==========" + '\033[0m')
-  print("                                 ")
-  print("1. Nouvelle partie")
-  print("2. Partie sauvegardée")
-  print("3. Infos")
-  print("4. Quitter")
+  print(" Choisir 1, 2, 3 ou 4. ")
+  print("-1- Nouvelle partie")
+  print("-2- Partie sauvegardée")
+  print("-3- Infos")
+  print("-4- Quitter")
+  return un_quatre()
 
-menu()
+def menu_principale():
+  print('\033[1m' + "==========MENU PRINCIPALE==========" + '\033[0m')
+  print(" Choisir 1, 2, 3 ou 4. ")
+  print("-1- Inventaire")
+  print("-2- Clear")
+  print("-3- Infos")
+  print("-4- Quitter")
+  return un_quatre()
+
+def action_menu_principale(sauver):
+  res=menu_principale()
+  if res==1:
+    inventaire()
+  elif res==2:
+    print("voulez-vous nettoyer la console ?")
+  elif res==3:
+    print(
+      "Nom du projet :  Le chemin vers l\'elysée  \n"
+      "Membres du groupe de 4 :                   \n"
+      "                       HAKIRI Emir         \n"
+      "                       LIMACO DIEGO        \n"
+      "                       MUGUET Benoit       \n"
+      "                       ROY Accene          \n"
+      "                       FERNANDES Guy       \n"
+      "Lieu : HETIC                               \n"
+      "Encadrement : JANIN Loïc                   \n"
+      "Language de programation : Python          \n"
+      "Date de rendu limite : 5 janvier 2022        "
+
+    )
+  elif res==4:
+    print("Voulez-vous vraiment quitter le jeu ?")
+    if oui_non():
+      print("Voulez-vous sauvegarder le jeu ?")
+      if oui_non():
+        sauvegarde(sauver)
+        print("A bientot...")
+        return
+      else :
+        print("Fin du jeu.")
+        return 
+  return res
+
+def sauvegarde(niv):
+  import pickle
+  #Enregistrer mes variables sous forme d'une liste dans un fichier
+  #Initialisation des variables
+  niveau_sauvegarde = niv
+
+  #Enregistrement des variables dans le fichier
+  variables = [niveau_sauvegarde]
+  fichierSauvegarde = open("sauvegarde_rpg","wb")
+  pickle.dump(variables, fichierSauvegarde)
+  fichierSauvegarde.close()
+  return
+
+
+def joystick():
+  print(" ")
+  print('\033[1m' + "==========JOYSTICK==========" + '\033[0m')
+  print(" Choisir 1, 2, 3 ou 4. ")
+  print("-1- HAUT")
+  print("-2- DROITE")
+  print("-3- GAUCHE")
+  print("-4- DEMIS-TOUR")
+  print("-5- Menu principale")
+  return un_cinq()
+
+'''
+  
+premier_menu()
 choice = int(input())
 
 def new_game() :
@@ -70,6 +143,9 @@ if choice == 3 :
 if choice == 4 :
   quit()
 
-def save_game() :
+def sauvegarde() :
 # ajouter la fonction de sauvegarde
   pass
+def menu_principale():
+  return
+  '''
