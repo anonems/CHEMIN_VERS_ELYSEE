@@ -11,52 +11,17 @@ Encadrement : JANIN Loïc
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
 '''
+
 #   importation des differentes parties du jeu
 from deplacement_RPG import deplacement_un,deplacement_deux,deplacement_trois,deplacement_quatre,deplacement_cinq
 from menu_RPG import premier_menu
-
-#   Fonction de test oui ou non.
-def oui_non():
-  urep = input()
-  if urep == 'OUI' or urep=='oui':
-    return True
-  elif urep == 'NON' or urep=='non':
-    return False
-  while  urep != 'OUI' or urep!='oui' or urep != 'NON' or urep!='non' :
-    print('erreur, choisissez oui ou non')
-    urep = input()
-    if urep == 'OUI' or urep=='oui':
-      return True
-    elif urep == 'NON' or urep=='non':
-      return False
-
+from fonctions import oui_non,presentation_rpg
+presentation_rpg()
 #   fonction principale du jeu.
 def main_rpg():
   first=premier_menu()
-  sauvegarde=""  #    permet le retour au niveau sauvgarder
-    
-  print("___________________________________________________________________________________________")
-  print("\n")
-  print(
-  "#################              ################                 ############################\n"
-  "##              ##             ##              ##               ##                        ##\n"
-  "##               ##            ##                ##             ##                        ##\n"
-  "##                ##           ##                  ##           ##                        ##\n"
-  "##                ##           ##                  ##           ##                          \n"
-  "##               ##            ##                ##             ##                          \n"
-  "##              ##             ##################               ##                          \n"
-  "##            ##               ##                               ##                          \n"
-  "##          ##                 ##                               ##              ############\n"
-  "##        ##                   ##                               ##              ##        ##\n"
-  "##          ##                 ##                               ##              ##        ##\n"
-  "##            ##               ##                               ##                        ##\n"
-  "##              ##             ##                               ##                        ##\n"
-  "##                ##           ##                               ############################\n"
-  )
-  print("\n")
-  print("___________________________________________________________________________________________")
+  sauvegarde=0  #    permet le retour au niveau sauvgarder
 
-  
   #le cas où le joueur demande de commencer un nouvelle partie.
   if first == 1: 
     print("**************************----------- Début du jeu ------------*************************")
@@ -85,30 +50,69 @@ def main_rpg():
 
     ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
     if deplacement_un() : #   première etape du jeu : combat de rue; personnage clef : Hidalgo
-        if deplacement_deux() : #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
-            if deplacement_trois() :  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
-                if deplacement_quatre() : #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
-                  if deplacement_cinq() : #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
-                    #   une fois toutes les étapes validées, fin du jeu.
-                    print("BRAVO ! VOUS AVEZ GAGNE")
-                    print("**************************----------- FIN DU JEU ------------*************************")
-                    return
-
-  #   le cas où le joueur souhaite continuer depuis une sauvegarde précédente.
-  elif first == 2:
-    ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
-    if deplacement_un() or sauvegarde == "etape_un": #   première etape du jeu : combat de rue; personnage clef : Hidalgo
-      if deplacement_deux() or sauvegarde == "etape_deux": #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
-        if deplacement_trois() or sauvegarde == "etape_trois":  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
-          if deplacement_quatre() or sauvegarde == "etape_quatre": #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
-            if deplacement_cinq() or sauvegarde == "etape_cinq": #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+      print("Vous reprenez au niveau 1.")
+      if deplacement_deux() : #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
+        print("Vous reprenez au niveau 2.")
+        if deplacement_trois() :  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
+          print("Vous reprenez au niveau 3.")
+          if deplacement_quatre() : #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
+            print("Vous reprenez au niveau 4.")
+            if deplacement_cinq() : #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+              print("Vous reprenez au niveau 5.")
               #   une fois toutes les étapes validées, fin du jeu.
               print("BRAVO ! VOUS AVEZ GAGNE")
               print("**************************----------- FIN DU JEU ------------*************************")
               return
+
+  #   le cas où le joueur souhaite continuer depuis une sauvegarde précédente.
+  elif first == 2:
+    import pickle
+    import os.path
+    fichierini = "sauvegarde_rpg"
+    #Ouverture du fichier si il existe et récupération de la liste
+    if os.path.isfile(fichierini):
+        fichierSauvegarde = open(fichierini,"rb")
+        variables = pickle.load(fichierSauvegarde)
+        fichierSauvegarde.close()
+        #récupération des données dans les variables
+        sauvegarde = variables[0]
+        ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
+        if deplacement_un() or sauvegarde == 1: #   première etape du jeu : combat de rue; personnage clef : Hidalgo
+          if deplacement_deux() or sauvegarde == 2: #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
+            if deplacement_trois() or sauvegarde == 3:  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
+              if deplacement_quatre() or sauvegarde == 4: #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
+                if deplacement_cinq() or sauvegarde == 5: #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+                  #   une fois toutes les étapes validées, fin du jeu.
+                  print("BRAVO ! VOUS AVEZ GAGNE")
+                  print("**************************----------- FIN DU JEU ------------*************************")
+                  return
+    else:
+        #Le fichier n'existe pas
+        print("Aucun element de sauvegarde trouvé.")
+        main_rpg()
+
+
   elif first == 3:
+    print(
+      "Nom du projet :  Le chemin vers l\'elysée  \n"
+      "Membres du groupe de 4 :                   \n"
+      "                       HAKIRI Emir         \n"
+      "                       LIMACO DIEGO        \n"
+      "                       MUGUET Benoit       \n"
+      "                       ROY Accene          \n"
+      "                       FERNANDES Guy       \n"
+      "Lieu : HETIC                               \n"
+      "Encadrement : JANIN Loïc                   \n"
+      "Language de programation : Python          \n"
+      "Date de rendu limite : 5 janvier 2022        "
+
+    )
+    main_rpg()
+
+  elif first == 4:
     print("au revoir.")
     return
+
 
 ##################################-------Lancement du jeu-------######################################
 main_rpg()
