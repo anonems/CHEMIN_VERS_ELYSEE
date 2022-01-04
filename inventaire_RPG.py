@@ -11,36 +11,28 @@ Encadrement : JANIN Loïc
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
 '''
+from fonctions import un_deux,oui_non
 
-#   importation des parties du jeu 
+# 	ajout d'objets
+l_objet=[]
+def inventaire_ajout_objet(objet):
+	l_objet.append(objet)
+	return l_objet
 
+#	ajout d'electeurs
+nb_ele=[]
+def inventaire_ajout_electeurs(nb):
+	nb_ele[0]=nb_ele[0]+nb
+	return nb_ele[0]
 
-#	la function fait le choix principal dans linventaire:
+#	la fonction fait le choix principal dans l'inventaire:
 def inventaire_choix_principal():
-	print("faire une choix")
-	print("1-arme")
-	print("2-potion")
-	choix = int(input())	
-	if choix == 1:
-		return True
-	elif choix == 2:
-		return False
-	while choix != 1 and choix != 2:
-		print("Erreur!choisir 1 or 2")
-		choix = int(input())	
-		if choix == 1:
-			return True
-		elif choix == 2:
-			return False
-	
-def inventaire_choix_secundaire():
-	if inventaire_choix_principal():
-		print()
-	else:
-		print()
+	print('\033[1m' + "==========INVENTAIRE==========" + '\033[0m')
+	for i in range(len(l_objet)):
+		print(i+1,". ",l_objet[i])
+	print("Vous avez",nb_ele[0],"élécteurs.")
+	print("Quitter l'inventaire ?")
+	while not(oui_non()):
+		print("Quitter l'inventaire ?")
+	return 
 
-def inventaire_ajout_objet():
-	return
-
-def inventaire_ajout_electeurs():
-	return
