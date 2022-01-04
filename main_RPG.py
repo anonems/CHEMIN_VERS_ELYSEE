@@ -22,7 +22,7 @@ def main_rpg():
   first=premier_menu()
   sauvegarde=0  #    permet le retour au niveau sauvgarder
 
-  #le cas où le joueur demande de commencer un nouvelle partie.
+  #le cas où le joueur demande de commencer une nouvelle partie.
   if first == 1: 
     print("**************************----------- Début du jeu ------------*************************")
     #   recuperation du nom du joueur.
@@ -50,15 +50,10 @@ def main_rpg():
 
     ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
     if deplacement_un() : #   première etape du jeu : combat de rue; personnage clef : Hidalgo
-      print("Vous reprenez au niveau 1.")
       if deplacement_deux() : #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
-        print("Vous reprenez au niveau 2.")
         if deplacement_trois() :  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
-          print("Vous reprenez au niveau 3.")
           if deplacement_quatre() : #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
-            print("Vous reprenez au niveau 4.")
             if deplacement_cinq() : #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
-              print("Vous reprenez au niveau 5.")
               #   une fois toutes les étapes validées, fin du jeu.
               print("BRAVO ! VOUS AVEZ GAGNE")
               print("**************************----------- FIN DU JEU ------------*************************")
@@ -78,10 +73,15 @@ def main_rpg():
         sauvegarde = variables[0]
         ##   Lancement des cinq étape du jeu, une etape n'est abordé que si l'étape précédente est validé.
         if deplacement_un() or sauvegarde == 1: #   première etape du jeu : combat de rue; personnage clef : Hidalgo
+          print("Vous reprenez au niveau 1.")
           if deplacement_deux() or sauvegarde == 2: #   deuxième étape du jeu : combat dans un meeting; personnage clef : zemmour
+            print("Vous reprenez au niveau 2.")
             if deplacement_trois() or sauvegarde == 3:  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
+              print("Vous reprenez au niveau 3.")
               if deplacement_quatre() or sauvegarde == 4: #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
+                print("Vous reprenez au niveau 4.")
                 if deplacement_cinq() or sauvegarde == 5: #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+                  print("Vous reprenez au niveau 1.")
                   #   une fois toutes les étapes validées, fin du jeu.
                   print("BRAVO ! VOUS AVEZ GAGNE")
                   print("**************************----------- FIN DU JEU ------------*************************")
@@ -91,7 +91,7 @@ def main_rpg():
         print("Aucun element de sauvegarde trouvé.")
         main_rpg()
 
-
+  #   le cas où le joueur souhaite afficher les infos relatives au jeu.
   elif first == 3:
     print(
       "Nom du projet :  Le chemin vers l\'elysée  \n"
@@ -108,11 +108,10 @@ def main_rpg():
 
     )
     main_rpg()
-
+  #   le cas où le joueur souhaite quiter le jeu avant de le commencer.
   elif first == 4:
     print("au revoir.")
     return
-
 
 ##################################-------Lancement du jeu-------######################################
 main_rpg()
