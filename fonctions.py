@@ -1,5 +1,6 @@
 #   permet de faire un choix entre oui et non.
 def oui_non():
+  print("Choisir oui ou non.")
   urep = input()
   if urep == 'OUI' or urep=='oui':
     return True
@@ -52,7 +53,7 @@ def un_quatre():
     elif urep == '4' :
       return 4
 
-#   permet de faire un choix entre les chiffres 1, 2, 3 ou 4.
+#   permet de faire un choix entre les chiffres 1, 2, 3, 4 ou 5.
 def un_cinq():
   urep = input()
   if urep == '1' :
@@ -66,7 +67,7 @@ def un_cinq():
   elif urep == '5' :
     return 5
   while  urep!='1' or urep!='2' or urep!='3' or urep!='4' or urep!='5':
-    print('ERREUR ! choisissez 1, 2, 3 ou 4.')
+    print('ERREUR ! choisissez 1, 2, 3, 4 ou 5.')
     urep = input()
     if urep == '1' :
       return 1
@@ -79,6 +80,7 @@ def un_cinq():
     elif urep == '5' :
       return 5
 
+#   presentation print rpg.
 def presentation_rpg():
   print("___________________________________________________________________________________________")
   print("\n")
