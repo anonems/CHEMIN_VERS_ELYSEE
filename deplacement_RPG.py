@@ -27,8 +27,6 @@ class Objets:
     self.tipe=tipe
     self.effet=effet
 
-
-
 #   permet de recuperer la commande executer dans le menu, puis l'appliquer au deplacement du joueur.
 def deplacement_libre(sauver):
   print("La main est à vous, vous pouvez vous déplacer :")
@@ -53,7 +51,7 @@ def deplacement_libre(sauver):
     action_menu_principale(sauver)
   return choix
 
-#   cette fonction permet l'apparition d'objet ai hazard sur le chemin du joueur
+#   cette fonction permet l'apparition d'objet au hazard sur le chemin du joueur
 def objet(sauver):
   res_deplacement=deplacement_libre(sauver)
   #   definition des objet que le joueur peut trouvé et recupérer sur son chemin.
@@ -67,15 +65,23 @@ def objet(sauver):
   #   choix d'un objet au hazard
   l_objets=[marteau,pv,pf,batb,gaz,electeur]
   if (res_deplacement) == ( 1 or 2 or 3 or 4):
-    res=l_objets[randint(0,5)]
-    print("vous avez trouver l'objet suivant :", res.nom)
-    print("voulez-vous le prendre ?")
-    if oui_non():
-      inventaire_ajout_objet(res_deplacement) #   ajout de l'objet selectionné dans l'inventaire du joueur
+    hz=randint(0,5)
+    res=l_objets[hz]
+    if hz == 5:
+      print("vous avez trouver 5 élécteurs.")
+      print("voulez-vous les rajouter à votre inventaire ?")
+      if oui_non():
+        inventaire_ajout_electeurs(5) #   ajout de l'objet selectionné dans l'inventaire du joueur
+      else:
+        print("OK")
     else:
-      print("ok")
+      print("vous avez trouver l'objet suivant :", res.nom)
+      print("voulez-vous le prendre ?")
+      if oui_non():
+        inventaire_ajout_objet(res.nom) #   ajout de l'objet selectionné dans l'inventaire du joueur
+      else:
+        print("OK")
   return res_deplacement
-
 
 #   première étape du jeu
 def deplacement_un():
@@ -97,9 +103,11 @@ def deplacement_un():
   if un_deux:
     print(input())
     print("Hidalgo : Comment ! garde du corp attack !")
-    combat(niveau)
+    if combat(niveau):
+      return True
   else:
-    combat(niveau)
+    if combat(niveau):
+      return True
 
 
 #  deuxième étape du jeu.
@@ -123,10 +131,12 @@ def deplacement_deux():
   print("2 - huer contre 'The humour'")
   if un_deux():
     #   combat contre the humour, repartir avec ses fan si combat gagné.
-    combat(niveau)
+    if combat(niveau):
+      return True
   else :
     #   combat contre les fan de the humour.
-    combat(22)
+    if combat(niveau):
+      return True
 
 #   combat pour le troisième niveau.
 def event_etape_trois():
@@ -200,7 +210,8 @@ def deplacement_quatre():
       if oui_non():
         print("Mme Pas-La-Peine : vous l'aurez voulu ...")
         #   quatrième combat
-        combat(4)
+        if combat(niveau):
+          return True
       else :
         print("Mme Pas-La-Peine : revenez à votre place s'il vous plait")
         objet(niveau)
@@ -209,7 +220,8 @@ def deplacement_quatre():
       print(input())
       print("Mme Pas-La-Peine : vous l'aurez voulu ...")
       #   quatrième combat
-      combat(4)
+      if combat(niveau):
+        return True
   else :
     print("serveur : excusez-moi messieur, je vous ramene un second café toute suite.")
     objet(niveau)
@@ -291,9 +303,9 @@ def deplacement_cinq():
           print("vous avez perdu")
         else :
           #   cinquième combat
-          combat(5)
+          if combat(niveau):
+            return True
     else :
       #   cinquième combat
-      combat(5)
-
-  return
+      if combat(niveau):
+        return True
