@@ -19,6 +19,19 @@ from fonctions import oui_non,presentation_rpg
 from inventaire_RPG import inventaire_ajout_electeurs
 presentation_rpg()
 #   fonction principale du jeu.
+#   recuperation du nom du joueur.
+print("votre nom ?")
+nom_joueur=input()
+nom=[nom_joueur]
+
+print("Bonjour",nom_joueur)
+print("Tes vacances se sont bien passé ?")
+if oui_non():
+  print("Tant-mieux.")
+  print("...")
+else:
+  print("Tant-pis")
+  print("...")
 def main_rpg():
   first=premier_menu()
   sauvegarde=0  #    permet le retour au niveau sauvgarder
@@ -26,18 +39,6 @@ def main_rpg():
   #le cas où le joueur demande de commencer une nouvelle partie.
   if first == 1: 
     print("**************************----------- Début du jeu ------------*************************")
-    #   recuperation du nom du joueur.
-    print("votre nom ?")
-    nom_joueur=input()
-    print("Bonjour",nom_joueur)
-    print("Tes vacances se sont bien passé ?")
-    if oui_non():
-      print("Tant-mieux.")
-      print("...")
-    else:
-      print("Tant-pis")
-      print("...")
-    
     #   presentation du jeu.
     print("Cher(e) candidat(e) à l'éléction présidentielle 2022;\n"
         "Dans ce jeu vous devrez tout faire pour être president.,\n"
