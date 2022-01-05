@@ -10,6 +10,7 @@ Lieu : HETIC
 Encadrement : JANIN Loïc 
 Language de programation : Python
 Date de rendu limite : 5 janvier 2022
+
 '''
 from fonctions import un_deux,oui_non
 
