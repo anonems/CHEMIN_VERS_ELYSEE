@@ -45,7 +45,7 @@ Qu'en est-il des menus ? :
                                                                                                                  -Se diriger à droite
                                                                                                                  -Se diriger à gauche
                                                                                                                  -Faire demis-tour
-                                                                                                                 -Afficher le menu principale
+                                                                                                                 -Afficher le menu principale \n
             (NB : le joystick à pour but de crée une interraction avec le joueur, de se déplacer d'un niveau à un autre et de crée un systeme de récompense au déplacement avec des objets qui apparaisse lorsque le joueur se déplace et qui peuvent étre ajouter à l'inventaire.)
         
         Le menu attaque :
