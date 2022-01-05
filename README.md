@@ -1,6 +1,6 @@
 # CHEMIN_VERS_ELYSEE
 Nom du projet : " Le chemin vers l'elysée " <br>
-Membres du groupe de 4 ainsi que leurs rôles : <br>
+Membres du groupe de 5 ainsi que leurs rôles : <br>
                         HAKIRI Emir     -->     Chef de projet & rassemblement des parties, parties deplacament_RPG.py, main_RPG.py <br>
                         LIMACO DIEGO    -->     Gestion de l'inventaire, partie inventaire_RPG.py <br>
                         MUGUET Benoit   -->     Gestion des combats, partie combat_RPG.py <br>
