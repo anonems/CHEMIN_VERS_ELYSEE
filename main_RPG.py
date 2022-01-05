@@ -15,7 +15,7 @@ Date de rendu limite : 5 janvier 2022
 #   importation des differentes parties du jeu
 from deplacement_RPG import deplacement_un,deplacement_deux,deplacement_trois,deplacement_quatre,deplacement_cinq
 from menu_RPG import premier_menu
-from fonctions import oui_non,presentation_rpg
+from fonctions import oui_non,presentation_rpg,about
 from inventaire_RPG import inventaire_ajout_electeurs
 presentation_rpg()
 #   fonction principale du jeu.
@@ -111,19 +111,7 @@ def main_rpg():
 
   #   le cas où le joueur souhaite afficher les infos relatives au jeu.
   elif first == 3:
-    print(
-      "Nom du projet :  Le chemin vers l\'elysée  \n"
-      "Membres du groupe de 4 :                   \n"
-      "                       HAKIRI Emir         \n"
-      "                       LIMACO DIEGO        \n"
-      "                       MUGUET Benoit       \n"
-      "                       ROY Accene          \n"
-      "                       FERNANDES Guy       \n"
-      "Lieu : HETIC                               \n"
-      "Encadrement : JANIN Loïc                   \n"
-      "Language de programation : Python          \n"
-      "Date de rendu limite : 5 janvier 2022        "
-    )
+    about()
     main_rpg()
   #   le cas où le joueur souhaite quiter le jeu avant de le commencer.
   elif first == 4:
