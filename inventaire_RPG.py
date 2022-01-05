@@ -20,7 +20,7 @@ def inventaire_ajout_objet(objet):
 	return l_objet
 
 #	ajout d'electeurs
-nb_ele=[]
+nb_ele=[0]
 def inventaire_ajout_electeurs(nb):
 	nb_ele[0]=nb_ele[0]+nb
 	return nb_ele[0]
@@ -36,3 +36,4 @@ def inventaire_choix_principal():
 		print("Quitter l'inventaire ?")
 	return 
 
+inventaire_ajout_electeurs(6)
