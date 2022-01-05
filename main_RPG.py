@@ -16,6 +16,7 @@ Date de rendu limite : 5 janvier 2022
 from deplacement_RPG import deplacement_un,deplacement_deux,deplacement_trois,deplacement_quatre,deplacement_cinq
 from menu_RPG import premier_menu
 from fonctions import oui_non,presentation_rpg
+from inventaire_RPG import inventaire_ajout_electeurs
 presentation_rpg()
 #   fonction principale du jeu.
 def main_rpg():
@@ -38,7 +39,7 @@ def main_rpg():
         "Vous pouvez arreter le jeu à tout moment, mais si vous n'avez plus de vie : le jeu est terminé!\n"
         "Le but final est de battre 'Alexandre', le gardien de l'elysée,\n"
         "ce qui vous permetra de passer au decomptage de electeurs que vous aurez pu ramasser sur votre chemin,\n"
-        "Attention ! si vous avez moins de 10 élécteurs vous perdez le jeu.\n"
+        "Attention ! si vous avez moins de 60 élécteurs vous perdez le jeu.\n"
         "\n")
 
     #   première interaction avec le joueur, qui n'a aucun effet sur le joueur, met qui permet de ne pas fatigué le joueur avec trop de lecture.
@@ -54,8 +55,11 @@ def main_rpg():
         if deplacement_trois() :  #   troisième étape du jeu : combat dans un plateau TV; personnage clef : Mélanchon
           if deplacement_quatre() : #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
             if deplacement_cinq() : #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
+              if inventaire_ajout_electeurs(0)>60:
               #   une fois toutes les étapes validées, fin du jeu.
-              print("BRAVO ! VOUS AVEZ GAGNE")
+                print("BRAVO ! VOUS AVEZ GAGNE")
+              else :
+                print("DOMAGE ! Vous avez perdu.")
               print("**************************----------- FIN DU JEU ------------*************************")
               return
 
