@@ -13,7 +13,7 @@ Date de rendu limite : 5 janvier 2022
 '''
 
 #   importation des parties du jeu
-from fonctions import un_quatre,oui_non,un_cinq
+from fonctions import un_quatre,oui_non,un_cinq,about
 from inventaire_RPG import inventaire_choix_principal
 import os #ceci nous servira pour l'option clear
 import sys  #ceci nous servira pour l'interruption du jeu
@@ -52,19 +52,7 @@ def action_menu_principale(sauver):
       action_menu_principale(sauver)
   elif res==3:  # affichage des infos
     print("Vous êtes actuellement au niveau ",sauver)
-    print(
-      "Nom du projet :  Le chemin vers l\'elysée  \n"
-      "Membres du groupe de 4 :                   \n"
-      "                       HAKIRI Emir         \n"
-      "                       LIMACO DIEGO        \n"
-      "                       MUGUET Benoit       \n"
-      "                       ROY Accene          \n"
-      "                       FERNANDES Guy       \n"
-      "Lieu : HETIC                               \n"
-      "Encadrement : JANIN Loïc                   \n"
-      "Language de programation : Python          \n"
-      "Date de rendu limite : 5 janvier 2022        "
-    )
+    about()
   elif res==4:  # quiter le jeu
     print("Voulez-vous vraiment quitter le jeu ?")
     if oui_non():
@@ -126,5 +114,4 @@ def menu_combat():
   print("-3- Quitter le combat")
   print("-4- Menu principal")
   return un_quatre()
-
-
+ 
