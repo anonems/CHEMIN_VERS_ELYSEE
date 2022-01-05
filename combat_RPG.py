@@ -14,7 +14,7 @@ Date de rendu limite : 5 janvier 2022
 
 from random import randint
 from menu_RPG import menu_combat,action_menu_principale
-from inventaire_RPG import inventaire_choix_principal,inventaire_ajout_electeurs
+from inventaire_RPG import inventaire_ajout_objet, inventaire_choix_principal,inventaire_ajout_electeurs
 
 #     class permettant la creation de personnages
 class Personnage :
@@ -25,7 +25,7 @@ class Personnage :
         self.xp = xp   
 
 #       creation de personnages clef dans le jeu
-player = Personnage("Benoit",100,"Poing Américain",1)
+player = Personnage("Player",100,"Poing Américain",1)
 boss_hidalgo = Personnage("Hidalgo",50,"Arc",2)
 boss_melenchon = Personnage("Mélenchon",100,"Batte de baseball",3)
 boss_zemmour = Personnage("Zemmour",150,"Gaz lacrymogène",4)
@@ -125,8 +125,9 @@ def combat(nb_rencontre) :
                 player.xp = adversaire.xp + 1
                 player.arme = adversaire.arme
                 player.points_vie = player.points_vie + 200
+                inventaire_ajout_objet(adversaire.arme)
                 inventaire_ajout_electeurs(100)
-                print("Vous avez gagné le combat, vous passez niveau",player.xp,"vous gagnez 200 points de vie et vous remportez",player.arme)
+                print("Vous avez gagné le combat, vous passez niveau",player.xp-1,"vous gagnez 200 points de vie et vous remportez",player.arme)
                 continu = False
                 return True
             print("Il vous reste",player.points_vie,"points de vie")
