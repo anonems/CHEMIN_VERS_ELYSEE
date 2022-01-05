@@ -107,7 +107,7 @@ def presentation_rpg():
 def about(): 
   print(
   "Nom du projet :  Le chemin vers l'elysée \n"
-  "Membres du groupe de 4 ainsi que leurs rôles :\n"
+  "Membres du groupe de 5 ainsi que leurs rôles :\n"
   "                                             HAKIRI Emir --> Chef de projet & rassemblement des parties, parties deplacament_RPG.py, main_RPG.py\n"
   "                                             LIMACO DIEGO --> Gestion de l'inventaire, partie inventaire_RPG.py\n"
   "                                             MUGUET Benoit --> Gestion des combats, partie combat_RPG.py\n"
