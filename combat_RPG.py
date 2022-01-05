@@ -1,6 +1,6 @@
 '''
 Nom du projet : " Le chemin vers l'elysée "
-Membres du groupe de 4 :
+Membres du groupe de 5 :
                         HAKIRI Emir
                         LIMACO DIEGO
                         MUGUET Benoit
