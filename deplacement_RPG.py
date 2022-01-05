@@ -148,14 +148,16 @@ def event_etape_trois():
   #   deroulement du jeu
   j=0
   for i in range(nb):
-    print(l_clache_melonchaud(randint(0,3)))
+    print(l_clache_melonchaud[randint(0,3)])
     print("c'est à vous")
     if input():
       j=j+1
   if j==nb:
     print("vous avez perdu le combat")
+    return False
   else :
     print("vous avez gagné le combat")
+    return True
 
 #   troisieme étape du jeu
 def deplacement_trois():
@@ -171,7 +173,8 @@ def deplacement_trois():
           "celui qui dit le n-ieme clash perd le combat.\n"
           "c'est parti...")
     #   troisième combat
-    event_etape_trois()
+    if event_etape_trois():
+      return True
 
       
 #   quatrieme etape du jeu
