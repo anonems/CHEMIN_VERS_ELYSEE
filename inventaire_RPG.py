@@ -36,4 +36,3 @@ def inventaire_choix_principal():
 		print("Quitter l'inventaire ?")
 	return 
 
-inventaire_ajout_electeurs(6)
