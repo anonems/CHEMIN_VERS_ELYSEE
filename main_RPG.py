@@ -28,8 +28,16 @@ def main_rpg():
     print("**************************----------- Début du jeu ------------*************************")
     #   recuperation du nom du joueur.
     print("votre nom ?")
-    nom=input()
-
+    nom_joueur=input()
+    print("Bonjour",nom_joueur)
+    print("Tes vacances se sont bien passé ?")
+    if oui_non():
+      print("Tant-mieux.")
+      print("...")
+    else:
+      print("Tant-pis")
+      print("...")
+    
     #   presentation du jeu.
     print("Cher(e) candidat(e) à l'éléction présidentielle 2022;\n"
         "Dans ce jeu vous devrez tout faire pour être president.,\n"
@@ -65,7 +73,7 @@ def main_rpg():
 
   #   le cas où le joueur souhaite continuer depuis une sauvegarde précédente.
   elif first == 2:
-    import pickle
+    import pickle 
     import os.path
     fichierini = "sauvegarde_rpg"
     #Ouverture du fichier si il existe et récupération de la liste
@@ -85,11 +93,16 @@ def main_rpg():
               if deplacement_quatre() or sauvegarde == 4: #   quatrième étape du jeu : combat dans un café; personnage clef : le pen
                 print("Vous reprenez au niveau 4.")
                 if deplacement_cinq() or sauvegarde == 5: #   dernière étape du jeu : combat à l'élysée; personnage clef : benalla
-                  print("Vous reprenez au niveau 1.")
+                  print("Vous reprenez au niveau 5.")
                   #   une fois toutes les étapes validées, fin du jeu.
-                  print("BRAVO ! VOUS AVEZ GAGNE")
+                  if inventaire_ajout_electeurs(0)>60:
+                  #   une fois toutes les étapes validées, fin du jeu.
+                    print("BRAVO ! VOUS AVEZ GAGNE")
+                  else :
+                    print("DOMAGE ! Vous avez perdu.")
                   print("**************************----------- FIN DU JEU ------------*************************")
                   return
+
     else:
         #Le fichier n'existe pas
         print("Aucun element de sauvegarde trouvé.")
@@ -109,7 +122,6 @@ def main_rpg():
       "Encadrement : JANIN Loïc                   \n"
       "Language de programation : Python          \n"
       "Date de rendu limite : 5 janvier 2022        "
-
     )
     main_rpg()
   #   le cas où le joueur souhaite quiter le jeu avant de le commencer.
